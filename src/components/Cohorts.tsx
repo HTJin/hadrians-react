@@ -27,22 +27,21 @@ export const Cohorts = () => {
   };
 
   const renderCohort = (name: string, cohortIcon: string) => (
-    <div className="flex items-center gap-x-4 pl-1">
-      <img src={cohortIcon} alt={`${name} Cohort`} />
+    <div className="flex items-center gap-x-4 pl-2">
+      <img src={cohortIcon} alt={`${name} Cohort`} className="w-12 h-12" />
       <div className="-ml-4 w-14 text-sm uppercase leading-5">
         {name} Cohort
       </div>
-      <img src={Cohort} alt="Cohort Icon" className="w-9" />
+      <img src={Cohort} alt="Cohort Icon" className="w-8" />
       <div
-        className="flex h-10 w-48 items-center justify-center gap-x-1 rounded-sm bg-red-600 pl-2"
+        className="flex h-10 w-full items-center justify-center gap-x-1 rounded-sm bg-red-600 pl-4 pr-2"
         style={{
           clipPath: "polygon(100% 0, 100% 100%, 0% 100%, 5% 50%, 0% 0%)",
-        }}
-      >
+        }}>
         {icons.map((icon, index) => (
           <ScribbleBox
             key={index}
-            uncheckedIcon={icon}
+            uncheckedIcons={icon} // Changed this line
             checkable={index === checkedCount}
             isRightMostChecked={index === checkedCount - 1}
             onCheck={handleCheck}
