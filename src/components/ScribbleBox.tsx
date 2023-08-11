@@ -8,7 +8,6 @@ interface ScribbleBoxProps {
   onCheck: () => void;
   onUncheck: () => void;
   width?: number;
-  extraWidth?: boolean;
 }
 
 export const ScribbleBox = ({
@@ -18,7 +17,6 @@ export const ScribbleBox = ({
   onCheck,
   onUncheck,
   width = 1,
-  extraWidth = false,
 }: ScribbleBoxProps) => {
   const [checked, setChecked] = useState(false);
 
@@ -40,15 +38,7 @@ export const ScribbleBox = ({
     }
     return uncheckedIcons?.map((icon, index) =>
       icon ? (
-        <img
-          key={index}
-          src={icon}
-          alt="Unchecked Icon"
-          className="h-full"
-          style={{
-            paddingRight: extraWidth ? "0.25rem" : undefined,
-          }}
-        />
+        <img key={index} src={icon} alt="Unchecked Icon" className="h-full" />
       ) : (
         <div className="h-full w-full bg-slate-100"></div>
       )
@@ -57,16 +47,17 @@ export const ScribbleBox = ({
 
   return (
     <div
-      className="h-7 cursor-pointer rounded-sm border bg-slate-50 bg-cover flex justify-center"
+      className="h-7 cursor-pointer rounded-sm border bg-slate-50 bg-cover flex justify-center relative"
       style={{
-        width: `${1.75 * width + (extraWidth ? 0.75 : 0)}rem`,
+        width: `${1.75 * width}rem`,
       }}
       onClick={toggleCheck}>
-      {checked ? (
-        <img src={Scribble1} alt="Checked Icon" className="h-full w-full" />
-      ) : (
-        renderUncheckedIcons()
-      )}
+      <div className="absolute inset-0 z-10">
+        {checked ? (
+          <img src={Scribble1} alt="Checked Icon" className="h-full w-full" />
+        ) : null}
+      </div>
+      {renderUncheckedIcons()}
     </div>
   );
 };
