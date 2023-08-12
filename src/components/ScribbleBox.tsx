@@ -41,17 +41,18 @@ export const ScribbleBox = ({
         <img key={index} src={icon} alt="Unchecked Icon" className="h-full" />
       ) : (
         <div className="h-full w-full bg-slate-100"></div>
-      )
+      ),
     );
   };
 
   return (
     <div
-      className="h-7 cursor-pointer rounded-sm border bg-slate-50 bg-cover flex justify-center relative"
+      className="relative flex h-7 cursor-pointer justify-center rounded-sm border bg-slate-50 bg-cover"
       style={{
         width: `${1.75 * width}rem`,
       }}
-      onClick={toggleCheck}>
+      onClick={toggleCheck}
+    >
       <div className="absolute inset-0 z-10">
         {checked ? (
           <img src={Scribble1} alt="Checked Icon" className="h-full w-full" />

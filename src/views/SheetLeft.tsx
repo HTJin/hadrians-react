@@ -1,13 +1,15 @@
 import { Cohorts } from "../components/Cohorts";
 import { MiningForesting } from "../components/MiningForesting";
 import { WallGuard } from "../components/WallGuard";
+import { CippiWallFort } from "../components/CippiWallFort";
 
 export const SheetLeft = () => {
   return (
-    <div className="w-fit flex flex-col gap-y-8 mt-8">
+    <div className="mt-8 grid w-fit grid-flow-row gap-y-8">
       <Cohorts />
       <MiningForesting />
       <WallGuard />
+      <CippiWallFort />
     </div>
   );
 };

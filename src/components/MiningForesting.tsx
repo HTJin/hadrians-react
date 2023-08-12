@@ -21,10 +21,11 @@ export const MiningForesting = () => {
   return (
     <div className="flex h-10 w-full items-center justify-around gap-x-1 rounded-sm pl-2">
       <div
-        className="uppercase rounded-sm text-sm bg-slate-800 py-1 px-4 flex items-center"
+        className="flex items-center rounded-sm bg-slate-800 px-4 py-1 text-sm uppercase"
         style={{
           clipPath: "polygon(95% 0, 100% 50%, 95% 100%, 0% 100%, 0% 0%)",
-        }}>
+        }}
+      >
         <span className="w-24">Mining & Foresting</span>
         <img src={Servant} alt="Servant" className="h-8" />
       </div>

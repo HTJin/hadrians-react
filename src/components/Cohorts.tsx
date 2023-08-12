@@ -28,7 +28,7 @@ export const Cohorts = () => {
 
   const renderCohort = (name: string, cohortIcon: string) => (
     <div className="flex items-center gap-x-4 pl-2">
-      <img src={cohortIcon} alt={`${name} Cohort`} className="w-12 h-12" />
+      <img src={cohortIcon} alt={`${name} Cohort`} className="h-12 w-12" />
       <div className="-ml-4 w-14 text-sm uppercase leading-5">
         {name} Cohort
       </div>
@@ -37,7 +37,8 @@ export const Cohorts = () => {
         className="flex h-10 w-full items-center justify-center gap-x-1 rounded-sm bg-red-600 pl-5 pr-2"
         style={{
           clipPath: "polygon(100% 0, 100% 100%, 0% 100%, 5% 50%, 0% 0%)",
-        }}>
+        }}
+      >
         {icons.map((icon, index) => (
           <ScribbleBox
             key={index}
