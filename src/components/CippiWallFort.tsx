@@ -2,11 +2,13 @@ import { useState } from "react";
 import Resource from "../assets/Icons/Resource.png";
 import Builder from "../assets/Icons/Builder.png";
 import Soldier from "../assets/Icons/Soldier.png";
+import Infrastructure from "../assets/Icons/Infrastructure.png";
 import {
   cippiIcons,
   wallIcons,
   fortIcons,
-} from "../assets/Icons/CippiWallFortIcons";
+  fortWidths,
+} from "./CippiWallFortIcons";
 import { ScribbleBox } from "./ScribbleBox";
 
 export const CippiWallFort = () => {
@@ -31,7 +33,15 @@ export const CippiWallFort = () => {
       isRightMostChecked={index === checkedCount - 1}
       onCheck={handleCheck}
       onUncheck={handleUncheck}
-      width={Array.isArray(icon) && icon.length === 2 ? 2 : 1} // Conditional width
+      width={
+        Array.isArray(icon) &&
+        icon[0] === Infrastructure &&
+        index < fortWidths.length
+          ? fortWidths[index]
+          : Array.isArray(icon) && icon.length === 2
+          ? 2
+          : 1
+      }
     />
   );
 

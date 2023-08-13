@@ -1,8 +1,8 @@
-import Cohort from "./Cohort.png";
-import Civilian from "./Civilian.png";
-import Renown from "./Renown.png";
-import Discipline from "./Discipline.png";
-import Infrastructure from "./Infrastructure.png";
+import Cohort from "../assets/Icons/Cohort.png";
+import Civilian from "../assets/Icons/Civilian.png";
+import Renown from "../assets/Icons/Renown.png";
+import Discipline from "../assets/Icons/Discipline.png";
+import Infrastructure from "../assets/Icons/Infrastructure.png";
 
 export const cippiIcons = [
   undefined,
@@ -58,4 +58,8 @@ export const fortIcons = [
   undefined,
   Civilian,
   [Discipline, Cohort],
+];
+
+export const fortWidths = [
+  2, 1, 1, 3, 1, 1, 2, 1, 1, 2, 2, 1, 2, 2, 1, 2, 1, 2, 1, 2, 2,
 ];
