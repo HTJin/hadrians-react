@@ -2,7 +2,6 @@ import { useState } from "react";
 import Resource from "../assets/Icons/Resource.png";
 import Builder from "../assets/Icons/Builder.png";
 import Soldier from "../assets/Icons/Soldier.png";
-import Infrastructure from "../assets/Icons/Infrastructure.png";
 import {
   cippiIcons,
   wallIcons,
@@ -10,6 +9,7 @@ import {
   fortWidths,
 } from "./CippiWallFortIcons";
 import { ScribbleBox } from "./ScribbleBox";
+import Arrow from "./Arrow";
 
 export const CippiWallFort = () => {
   const [checkedCount, setCheckedCount] = useState(0);
@@ -33,15 +33,22 @@ export const CippiWallFort = () => {
       isRightMostChecked={index === checkedCount - 1}
       onCheck={handleCheck}
       onUncheck={handleUncheck}
-      width={
-        Array.isArray(icon) &&
-        icon[0] === Infrastructure &&
-        index < fortWidths.length
-          ? fortWidths[index]
-          : Array.isArray(icon) && icon.length === 2
-          ? 2
-          : 1
-      }
+      width={Array.isArray(icon) && icon.length === 2 ? 2 : 1}
+    />
+  );
+
+  const renderFortScribbleBox = (
+    icon: string | string[] | undefined,
+    index: number,
+  ) => (
+    <ScribbleBox
+      key={index}
+      uncheckedIcons={icon}
+      checkable={index === checkedCount}
+      isRightMostChecked={index === checkedCount - 1}
+      onCheck={handleCheck}
+      onUncheck={handleUncheck}
+      width={index < fortWidths.length ? fortWidths[index] : 1}
     />
   );
 
@@ -74,9 +81,9 @@ export const CippiWallFort = () => {
     </div>
   );
   const Fort = () => (
-    <div className="flex h-10 w-full items-center justify-around gap-x-1 rounded-sm pl-2">
+    <div className="flex h-10 w-full items-end justify-around gap-x-1 rounded-sm pl-2">
       <div
-        className="flex items-center rounded-sm bg-slate-800 px-4 py-1 text-sm uppercase"
+        className="flex items-center rounded-sm bg-slate-800 px-4 py-1 text-sm uppercase [polygon(95% 0, 100% 50%, 95% 100%, 0% 100%, 0% 0%)]"
         style={{
           clipPath: "polygon(95% 0, 100% 50%, 95% 100%, 0% 100%, 0% 0%)",
         }}
@@ -85,7 +92,12 @@ export const CippiWallFort = () => {
         <img src={Builder} alt="Builder" className="mr-1 h-8" /> /
         <img src={Soldier} alt="Soldier" className="ml-1 h-8" />
       </div>
-      {fortIcons.map(renderScribbleBox)}
+      {fortIcons.map((icon, index) => (
+        <div className="flex flex-col items-center -translate-y-[.375rem]">
+          <Arrow width={index < fortWidths.length ? fortWidths[index] : 1} />
+          {renderFortScribbleBox(icon, index)}
+        </div>
+      ))}
     </div>
   );
 
