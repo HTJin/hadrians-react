@@ -83,7 +83,7 @@ export const CippiWallFort = () => {
   const Fort = () => (
     <div className="flex h-10 w-full items-end justify-around gap-x-1 rounded-sm pl-2">
       <div
-        className="flex items-center rounded-sm bg-slate-800 px-4 py-1 text-sm uppercase [polygon(95% 0, 100% 50%, 95% 100%, 0% 100%, 0% 0%)]"
+        className="[polygon(95% 0, 100% 50%, 95% 100%, 0% 100%, 0% 0%)] flex items-center rounded-sm bg-slate-800 px-4 py-1 text-sm uppercase"
         style={{
           clipPath: "polygon(95% 0, 100% 50%, 95% 100%, 0% 100%, 0% 0%)",
         }}
@@ -93,8 +93,14 @@ export const CippiWallFort = () => {
         <img src={Soldier} alt="Soldier" className="ml-1 h-8" />
       </div>
       {fortIcons.map((icon, index) => (
-        <div className="flex flex-col items-center -translate-y-[.375rem]">
-          <Arrow width={index < fortWidths.length ? fortWidths[index] : 1} />
+        <div
+          key={index}
+          className="flex -translate-y-[.375rem] flex-col items-center"
+        >
+          <Arrow
+            width={index < fortWidths.length ? fortWidths[index] : 1}
+            specialCase={index === 3 && fortWidths[index] === 3}
+          />
           {renderFortScribbleBox(icon, index)}
         </div>
       ))}
