@@ -99,7 +99,9 @@ export const CippiWallFort = () => {
         >
           <Arrow
             width={index < fortWidths.length ? fortWidths[index] : 1}
-            specialCase={index === 3 && fortWidths[index] === 3}
+            specialCase={
+              index === 3 || index === 10 || index === 17 || index === 20
+            }
           />
           {renderFortScribbleBox(icon, index)}
         </div>
