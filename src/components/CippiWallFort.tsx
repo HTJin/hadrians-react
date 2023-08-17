@@ -52,6 +52,21 @@ export const CippiWallFort = () => {
     />
   );
 
+  const renderWallScribbleBox = (
+    icon: string | string[] | undefined,
+    index: number,
+  ) => (
+    <ScribbleBox
+      key={index}
+      uncheckedIcons={icon}
+      checkable={index === checkedCount}
+      isRightMostChecked={index === checkedCount - 1}
+      onCheck={handleCheck}
+      onUncheck={handleUncheck}
+      width={Array.isArray(icon) && icon.length === 2 ? 2 : 1}
+    />
+  );
+
   const Cippi = () => (
     <div className="flex h-10 w-full items-center justify-around gap-x-1 rounded-sm pl-2">
       <div
@@ -66,6 +81,7 @@ export const CippiWallFort = () => {
       {cippiIcons.map(renderScribbleBox)}
     </div>
   );
+
   const Wall = () => (
     <div className="flex h-10 w-full items-center justify-around gap-x-1 rounded-sm pl-2">
       <div
@@ -77,9 +93,24 @@ export const CippiWallFort = () => {
         <span className="w-24">Wall</span>
         <img src={Resource} alt="Resource" className="h-8" />
       </div>
-      {wallIcons.map(renderScribbleBox)}
+      {wallIcons.map((icon, index) => {
+        const arrowIndex = [
+          0, 2, 3, 4, 6, 7, 8, 10, 11, 12, 14, 15, 16, 18, 19, 20,
+        ][index];
+        return (
+          <div
+            key={index}
+            className={`flex ${
+              arrowIndex % 2 === 0 ? "justify-center" : "justify-start"
+            }`}
+          >
+            {renderWallScribbleBox(icon, index)}
+          </div>
+        );
+      })}
     </div>
   );
+
   const Fort = () => (
     <div className="flex h-10 w-full items-end justify-around gap-x-1 rounded-sm pl-2">
       <div
