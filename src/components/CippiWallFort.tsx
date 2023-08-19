@@ -13,6 +13,7 @@ import Arrow from "./Arrow";
 
 export const CippiWallFort = () => {
   const [checkedCount, setCheckedCount] = useState(0);
+  const totalFortWidth = fortWidths.reduce((acc, width) => acc + width, 0) + 3;
 
   const handleCheck = () => {
     setCheckedCount(checkedCount + 1);
@@ -22,10 +23,7 @@ export const CippiWallFort = () => {
     setCheckedCount(checkedCount - 1);
   };
 
-  const renderScribbleBox = (
-    icon: string | string[] | undefined,
-    index: number,
-  ) => (
+  const renderScribbleBox = (icon: string | string[] | undefined, index: number) => (
     <ScribbleBox
       key={index}
       uncheckedIcons={icon}
@@ -37,10 +35,7 @@ export const CippiWallFort = () => {
     />
   );
 
-  const renderFortScribbleBox = (
-    icon: string | string[] | undefined,
-    index: number,
-  ) => (
+  const renderFortScribbleBox = (icon: string | string[] | undefined, index: number) => (
     <ScribbleBox
       key={index}
       uncheckedIcons={icon}
@@ -52,10 +47,7 @@ export const CippiWallFort = () => {
     />
   );
 
-  const renderWallScribbleBox = (
-    icon: string | string[] | undefined,
-    index: number,
-  ) => (
+  const renderWallScribbleBox = (icon: string | string[] | undefined, index: number) => (
     <ScribbleBox
       key={index}
       uncheckedIcons={icon}
@@ -82,34 +74,46 @@ export const CippiWallFort = () => {
     </div>
   );
 
-  const Wall = () => (
-    <div className="flex h-10 w-full items-center justify-around gap-x-1 rounded-sm pl-2">
+  const Wall = () => {
+    const arrowIndices = [
+      0, 2, 3, 4, 6, 7, 8, 10, 11, 12, 14, 15, 16, 18, 19, 20,
+    ];
+    const gridTemplateColumns = `auto auto auto ${fortWidths
+      .map((width) => "auto ".repeat(width))
+      .join("")}`;
+
+    return (
       <div
-        className="flex items-center rounded-sm bg-slate-800 px-4 py-1 text-sm uppercase"
-        style={{
-          clipPath: "polygon(95% 0, 100% 50%, 95% 100%, 0% 100%, 0% 0%)",
-        }}
+        className="grid h-10 w-full items-center gap-x-1 rounded-sm pl-2"
+        style={{ gridTemplateColumns }}
       >
-        <span className="w-24">Wall</span>
-        <img src={Resource} alt="Resource" className="h-8" />
+        <div
+          className="col-span-3 flex items-center rounded-sm bg-slate-800 px-4 py-1 text-sm uppercase"
+          style={{
+            clipPath: "polygon(95% 0, 100% 50%, 95% 100%, 0% 100%, 0% 0%)",
+          }}
+        >
+          <span className="w-24">Wall</span>
+          <img src={Resource} alt="Resource" className="h-8" />
+        </div>
+        {wallIcons.map((icon, index) => {
+          let startCol = 4; // Starting from 4th column as first three columns are reserved for "Wall" label
+          for (let i = 0; i < index; i++) {
+            startCol += fortWidths[arrowIndices[i]] || 1;
+          }
+          return (
+            <div
+              key={index}
+              className={`col-start-${startCol} col-span-1 flex items-center`}
+            >
+              {renderWallScribbleBox(icon, index)}
+            </div>
+          );
+        })}
       </div>
-      {wallIcons.map((icon, index) => {
-        const arrowIndex = [
-          0, 2, 3, 4, 6, 7, 8, 10, 11, 12, 14, 15, 16, 18, 19, 20,
-        ][index];
-        return (
-          <div
-            key={index}
-            className={`flex ${
-              arrowIndex % 2 === 0 ? "justify-center" : "justify-start"
-            }`}
-          >
-            {renderWallScribbleBox(icon, index)}
-          </div>
-        );
-      })}
-    </div>
-  );
+    );
+  };
+
 
   const Fort = () => (
     <div className="flex h-10 w-full items-end justify-around gap-x-1 rounded-sm pl-2">
@@ -141,7 +145,7 @@ export const CippiWallFort = () => {
   );
 
   return (
-    <div className="grid grid-flow-row gap-y-8">
+    <div className={`grid-cols-${totalFortWidth} grid gap-y-8`}>
       <Cippi />
       <Wall />
       <Fort />
