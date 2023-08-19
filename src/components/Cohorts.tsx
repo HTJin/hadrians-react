@@ -42,7 +42,7 @@ export const Cohorts = () => {
         {icons.map((icon, index) => (
           <ScribbleBox
             key={index}
-            uncheckedIcons={icon} // Changed this line
+            uncheckedIcons={icon}
             checkable={index === checkedCount}
             isRightMostChecked={index === checkedCount - 1}
             onCheck={handleCheck}
