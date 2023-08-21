@@ -8,14 +8,7 @@ import Valour from "../assets/Icons/Valour.png";
 import { ScribbleBox } from "./ScribbleBox";
 
 export const Cohorts = () => {
-  const icons = [
-    undefined,
-    undefined,
-    Discipline,
-    undefined,
-    Valour,
-    Discipline,
-  ];
+  const icons = [[], [], [Discipline], [], [Valour], [Discipline]];
   const [checkedCount, setCheckedCount] = useState(0);
 
   const handleCheck = () => {

@@ -6,8 +6,8 @@ import Soldier from "../assets/Icons/Soldier.png";
 import { ScribbleBox } from "./ScribbleBox";
 
 export const WallGuard = () => {
-  const iconsPattern = [Cohort, Discipline, Cohort];
-  const repeatedPattern = [undefined, Discipline, Cohort];
+  const iconsPattern = [[Cohort], [Discipline], [Cohort]];
+  const repeatedPattern = [[], [Discipline], [Cohort]];
   const icons = [...iconsPattern, ...Array(5).fill(repeatedPattern).flat()];
   const [checkedCount, setCheckedCount] = useState(0);
 

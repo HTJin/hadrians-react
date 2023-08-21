@@ -7,7 +7,7 @@ import { ScribbleBox } from "./ScribbleBox";
 export const MiningForesting = () => {
   const icons = Array(14)
     .fill(undefined)
-    .map((_, i) => (i % 3 === 1 ? [ResourceProduction, Resource] : undefined));
+    .map((_, i) => (i % 3 === 1 ? [ResourceProduction, Resource] : []));
   const [checkedCount, setCheckedCount] = useState(0);
 
   const handleCheck = () => {
