@@ -7,10 +7,12 @@ import Discipline from "../assets/Icons/Discipline.png";
 import Valour from "../assets/Icons/Valour.png";
 import { ScribbleBox } from "./ScribbleBox";
 
-const Cohort: React.FC<{ name: string; cohortIcon: string }> = ({
-  name,
-  cohortIcon,
-}) => {
+interface CohortProps {
+  name: string;
+  cohortIcon: string;
+}
+
+const Cohort = ({ name, cohortIcon }: CohortProps) => {
   const icons = [
     undefined,
     undefined,
