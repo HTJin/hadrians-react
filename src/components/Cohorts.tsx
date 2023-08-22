@@ -13,14 +13,7 @@ interface CohortProps {
 }
 
 const Cohort = ({ name, cohortIcon }: CohortProps) => {
-  const icons = [
-    undefined,
-    undefined,
-    Discipline,
-    undefined,
-    Valour,
-    Discipline,
-  ];
+  const icons = [[], [], [Discipline], [], [Valour], [Discipline]];
   const [checkedCount, setCheckedCount] = useState(0);
 
   const handleCheck = () => {
