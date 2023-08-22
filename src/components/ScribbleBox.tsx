@@ -10,10 +10,8 @@ interface ScribbleBoxProps {
   width?: number;
 }
 
-const UncheckedIcon: React.FC<{
-  uncheckedIcons: string[];
-}> = ({ uncheckedIcons }) => {
-  return uncheckedIcons?.map((icon, index) =>
+const UncheckedIcon = ({ uncheckedIcons }: { uncheckedIcons: string[] }) => {
+  return uncheckedIcons.map((icon, index) =>
     icon ? (
       <img key={index} src={icon} alt="Unchecked Icon" className="h-full" />
     ) : (
