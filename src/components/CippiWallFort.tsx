@@ -23,7 +23,7 @@ export const CippiWallFort = () => {
     setCheckedCount(checkedCount - 1);
   };
 
-  const renderScribbleBox = (icon: string | string[] | undefined, index: number) => (
+  const renderScribbleBox = (icon: string[], index: number) => (
     <ScribbleBox
       key={index}
       uncheckedIcons={icon}
@@ -35,7 +35,7 @@ export const CippiWallFort = () => {
     />
   );
 
-  const renderFortScribbleBox = (icon: string | string[] | undefined, index: number) => (
+  const renderFortScribbleBox = (icon: string[], index: number) => (
     <ScribbleBox
       key={index}
       uncheckedIcons={icon}
@@ -47,7 +47,7 @@ export const CippiWallFort = () => {
     />
   );
 
-  const renderWallScribbleBox = (icon: string | string[] | undefined, index: number) => (
+  const renderWallScribbleBox = (icon: string[], index: number) => (
     <ScribbleBox
       key={index}
       uncheckedIcons={icon}
@@ -113,7 +113,6 @@ export const CippiWallFort = () => {
       </div>
     );
   };
-
 
   const Fort = () => (
     <div className="flex h-10 w-full items-end justify-around gap-x-1 rounded-sm pl-2">
