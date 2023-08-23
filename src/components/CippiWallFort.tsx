@@ -97,7 +97,7 @@ export const CippiWallFort = () => {
           <img src={Resource} alt="Resource" className="h-8" />
         </div>
         {wallIcons.map((icon, index) => {
-          let startCol = 4; // Starting from 4th column as first three columns are reserved for "Wall" label
+          let startCol = 4;
           for (let i = 0; i < index; i++) {
             startCol += fortWidths[arrowIndices[i]] || 1;
           }
