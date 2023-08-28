@@ -1,7 +1,8 @@
 import { Cohorts } from "../components/Cohorts";
 import { MiningForesting } from "../components/MiningForesting";
 import { WallGuard } from "../components/WallGuard";
-import { CippiWallFort } from "../components/CippiWallFort";
+// import { CippiWallFort } from "../components/CippiWallFort";
+import { CWF } from "../components/CWF";
 
 export const SheetLeft = () => {
   return (
@@ -9,7 +10,8 @@ export const SheetLeft = () => {
       <Cohorts />
       <MiningForesting />
       <WallGuard />
-      <CippiWallFort />
+      {/* <CippiWallFort /> */}
+      <CWF />
     </div>
   );
 };
