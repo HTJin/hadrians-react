@@ -9,7 +9,6 @@ import {
   fortWidths,
 } from "./CippiWallFortIcons";
 import { ScribbleBox } from "./ScribbleBox";
-import Arrow from "./Arrow";
 import "./CippiWallFort.css";
 
 export const CWF = () => {
@@ -35,9 +34,47 @@ export const CWF = () => {
     />
   );
 
-  const Cippi = () => (
-    <div className="div52">
-      <div className="flex h-10 w-full items-center justify-around gap-x-1 rounded-sm pl-2">
+  const renderFortScribbleBox = (icon: string[], index: number) => (
+    <ScribbleBox
+      key={index}
+      uncheckedIcons={icon}
+      checkable={index === checkedCount}
+      isRightMostChecked={index === checkedCount - 1}
+      onCheck={handleCheck}
+      onUncheck={handleUncheck}
+      width={fortWidths[index]}
+    />
+  );
+
+  return (
+    <div className="parent">
+      {Array.from({ length: 49 }).map((_, index) => {
+        if (index < cippiIcons.length) {
+          return (
+            <div className={`div${index + 1}`}>
+              {renderScribbleBox(cippiIcons[index], index)}
+            </div>
+          );
+        } else if (index < cippiIcons.length + wallIcons.length) {
+          return (
+            <div className={`div${index + 1}`}>
+              {renderScribbleBox(wallIcons[index - cippiIcons.length], index)}
+            </div>
+          );
+        } else if (
+          index <
+          cippiIcons.length + wallIcons.length + fortIcons.length
+        ) {
+          const fortIndex = index - cippiIcons.length - wallIcons.length;
+          return (
+            <div className={`div${index + 1}`}>
+              {renderFortScribbleBox(fortIcons[fortIndex], fortIndex)}
+            </div>
+          );
+        }
+        return null;
+      })}
+      <div className="div52">
         <div
           className="flex items-center rounded-sm bg-slate-800 px-4 py-1 text-sm uppercase"
           style={{
@@ -47,14 +84,8 @@ export const CWF = () => {
           <span className="w-24">Cippi</span>
           <img src={Resource} alt="Resource" className="h-8" />
         </div>
-        {cippiIcons.map(renderScribbleBox)}
       </div>
-    </div>
-  );
-
-  const Wall = () => (
-    <div className="div51">
-      <div className="flex h-10 w-full items-center justify-around gap-x-1 rounded-sm pl-2">
+      <div className="div51">
         <div
           className="flex items-center rounded-sm bg-slate-800 px-4 py-1 text-sm uppercase"
           style={{
@@ -64,14 +95,8 @@ export const CWF = () => {
           <span className="w-24">Wall</span>
           <img src={Resource} alt="Resource" className="h-8" />
         </div>
-        {wallIcons.map(renderScribbleBox)}
       </div>
-    </div>
-  );
-
-  const Fort = () => (
-    <div className="div50">
-      <div className="flex h-10 w-full items-center justify-around gap-x-1 rounded-sm pl-2">
+      <div className="div50">
         <div
           className="flex items-center rounded-sm bg-slate-800 px-4 py-1 text-sm uppercase"
           style={{
@@ -82,44 +107,7 @@ export const CWF = () => {
           <img src={Builder} alt="Builder" className="mr-1 h-8" /> /
           <img src={Soldier} alt="Soldier" className="ml-1 h-8" />
         </div>
-        {fortIcons.map((icon, index) => (
-          <div className="flex flex-col items-center">
-            <Arrow width={fortWidths[index]} />
-            {renderScribbleBox(icon, index)}
-          </div>
-        ))}
       </div>
-    </div>
-  );
-
-  return (
-    <div className="parent">
-      {Array.from({ length: 49 }).map((_, index) => (
-        <div className={`div${index + 1}`}>
-          {index < cippiIcons.length && (
-            <div className={`div${index + 1}`}>
-              {renderScribbleBox(cippiIcons[index], index)}
-            </div>
-          )}
-          {index >= cippiIcons.length &&
-            index < cippiIcons.length + wallIcons.length && (
-              <div className={`div${index + 1}`}>
-                {renderScribbleBox(wallIcons[index - cippiIcons.length], index)}
-              </div>
-            )}
-          {index >= cippiIcons.length + wallIcons.length && (
-            <div className={`div${index + 1}`}>
-              {renderScribbleBox(
-                fortIcons[index - (cippiIcons.length + wallIcons.length)],
-                index,
-              )}
-            </div>
-          )}
-        </div>
-      ))}
-      <Cippi />
-      <Wall />
-      <Fort />
     </div>
   );
 };
