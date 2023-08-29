@@ -47,7 +47,7 @@ export const CWF = () => {
   );
 
   return (
-    <div className="parent">
+    <div className="parent w-11/12 mx-auto gap-y-6">
       {Array.from({ length: 49 }).map((_, index) => {
         if (index < cippiIcons.length) {
           return (
