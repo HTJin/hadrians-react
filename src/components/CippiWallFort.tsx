@@ -115,7 +115,12 @@ export const CippiWallFort = () => {
   };
 
   const Fort = () => (
-    <div className="flex h-10 w-full items-end justify-around gap-x-1 rounded-sm pl-2">
+    <div
+      className="grid h-10 w-full items-end justify-around gap-x-1 rounded-sm pl-2"
+      style={{
+        gridTemplateColumns: `repeat(${totalFortWidth}, minmax(0, 1fr))`,
+      }}
+    >
       <div
         className="flex items-center rounded-sm bg-slate-800 px-4 py-1 text-sm uppercase"
         style={{
@@ -129,7 +134,9 @@ export const CippiWallFort = () => {
       {fortIcons.map((icon, index) => (
         <div
           key={index}
-          className="flex -translate-y-[.375rem] flex-col items-center"
+          className={`col-start-${index + 2} col-span-${
+            fortWidths[index]
+          } flex -translate-y-[.375rem] flex-col items-center`}
         >
           <Arrow
             width={index < fortWidths.length ? fortWidths[index] : 1}
