@@ -1,27 +1,33 @@
-# React + TypeScript + Vite
+# hadrians-react
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A digital score sheet for the board game Hadrian's Wall. Each player tracks their cohorts,
+wall guard, forts, mining and foresting on screen instead of on the paper pad.
 
-Currently, two official plugins are available:
+## What is on the sheet
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+| Component | Tracks |
+|---|---|
+| `Cohorts` | Soldiers available and spent |
+| `WallGuard` | The wall guard track |
+| `CippiWallFort` and `CWF` | The cippi, wall and fort rows, with icons from `CippiWallFortIcons.ts` |
+| `MiningForesting` | The two resource tracks |
+| `ScribbleBox` | Free notes |
+| `Arrow` | The shared arrow marker |
 
-## Expanding the ESLint configuration
+`views/SheetLeft.tsx` lays the left page of the pad out from those parts. `types/user.ts`
+holds the player state.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+A Svelte version of the same sheet lives at
+[hadrians-svelte](https://github.com/HTJin/hadrians-svelte); the two were built to compare
+the frameworks on one real layout.
 
-- Configure the top-level `parserOptions` property like this:
+## Stack
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+React 18, TypeScript, Vite, Tailwind CSS, React Router.
+
+## Run it
+
+```bash
+bun install
+bun run dev      # http://localhost:5173
 ```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
